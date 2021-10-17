@@ -1,0 +1,11 @@
+/target/
+/.settings/
+/.idea/
+/.classpath
+/.project
+/bin/
+*.class
+*.classpath
+*.project
+*.iml
+/target/classes/META-INF/maven/Programs/com.rameswar.interview/Core_Java_Programs/pom.properties

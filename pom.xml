@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.rameswar</groupId>
+	<artifactId>TimeSheetUpdater</artifactId>
+	<packaging>jar</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>selenium-test</name>
+
+	<repositories>
+		<repository>
+			<id>my</id>
+			<url>file://D://Softwares//Jars</url>
+		</repository>
+	</repositories>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<finalName>seleniumTest</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<finalName>TimeSheetUpdater</finalName>
+					<outputDirectory>D:\Time Sheet Updater</outputDirectory>
+					<addClasspath>true</addClasspath>
+					<archive>
+						<manifest>
+							<mainClass>com.ram.timesheetupdater.TimeSheetStarter</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-server</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>3.141.59</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>7.3.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.github.2gis.winium/winium-webdriver -->
+		<dependency>
+			<groupId>com.github.2gis.winium</groupId>
+			<artifactId>winium-webdriver</artifactId>
+			<version>0.1.0-1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.rameswar</groupId>
+			<artifactId>EncryptionUtils</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+</project>
