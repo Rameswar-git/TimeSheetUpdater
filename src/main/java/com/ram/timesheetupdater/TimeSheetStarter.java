@@ -49,6 +49,7 @@ public class TimeSheetStarter {
 			console.flush();
 		}
 		timeSheetUpdaterService.updateTimeSheet(driver);
+		timeSheetUpdaterService.updateMissingTimeSheets(driver);
 	}
 	
 	public static void maintest(String[] args) throws MalformedURLException, IOException, InterruptedException {
