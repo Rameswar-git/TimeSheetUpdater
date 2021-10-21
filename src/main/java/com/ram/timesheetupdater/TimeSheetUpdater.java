@@ -106,15 +106,27 @@ public interface TimeSheetUpdater {
 	public default void updateMissingTimeSheets(WebDriver driver) throws InterruptedException {
 		driver.navigate().to("https://myspace.innominds.com/employee/timesheetmonthview");
 		TimeUnit.SECONDS.sleep(3);
-		String missingDates = driver.findElement(By.xpath("//div[@id=\"results\"]/p/span[2]")).getText();
-		System.out.printf("TimeSheet was not Updated for %s Dates",missingDates);
-		System.out.println();
-		String[] split = missingDates.split(",");
-		for (String missedDate : split) {
-			stringEditor.append(missedDate.trim().replaceAll("\\s+", "-"));
-			LocalDate date = LocalDate.parse(stringEditor.delete(2,4).toString(),ddMMyyyyFormater);
-			updateForDate(driver,LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth()));
-			stringEditor.setLength(0);
+		WebElement missingDatesElement = findMissingDates(driver,"//div[@id=\"results\"]/p/span[2]");
+		if(null!=missingDatesElement) {
+			String missingDates = missingDatesElement.getText();
+			System.out.printf("TimeSheet was not Updated for %s Dates",missingDates);
+			System.out.println();
+			String[] split = missingDates.split(",");
+			for (String missedDate : split) {
+				stringEditor.append(missedDate.trim().replaceAll("\\s+", "-"));
+				LocalDate date = LocalDate.parse(stringEditor.delete(2,4).toString(),ddMMyyyyFormater);
+				updateForDate(driver,LocalDate.of(date.getYear(), date.getMonth(), date.getDayOfMonth()));
+				stringEditor.setLength(0);
+			}
+		}
+	}
+
+	public default WebElement findMissingDates(WebDriver driver, String xPath) {
+		try {
+			return driver.findElement(By.xpath(xPath));
+		} catch (Exception e) {
+			System.out.println("~~~~~~There are no Missing dates available to Fill~~~~~~~");
+			return null;
 		}
 	}
 }
