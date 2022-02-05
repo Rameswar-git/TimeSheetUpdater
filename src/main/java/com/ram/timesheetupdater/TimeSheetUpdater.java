@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public interface TimeSheetUpdater {
 	
-	final List<String> holidays = Arrays.asList("2021-09-10","2021-10-15","2021-11-01","2021-11-04");
+	final List<String> holidays = Arrays.asList("2022-03-17","2022-05-03","2022-08-15","2022-08-31","2022-10-05","2022-10-24");
 	OrganizationalTimeSheetUpdater orgActivity = new OrganizationalTimeSheetUpdater();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	DateTimeFormatter ddMMyyyyFormater = DateTimeFormatter.ofPattern(("dd-MMM-yy"));
