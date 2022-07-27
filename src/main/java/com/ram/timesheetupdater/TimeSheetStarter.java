@@ -20,7 +20,7 @@ public class TimeSheetStarter {
 	static {
 		Properties props = new Properties();
 		try {
-			props.load(new FileInputStream("D:\\Time Sheet Updater\\TimeSheetApp.properties"));
+			props.load(new FileInputStream(System.getenv("timesheet.proppath").trim()));
 			String property = props.getProperty("timesheet.class");
 			Class<?> forName = Class.forName(property);
 			timeSheetUpdaterService = (TimeSheetUpdater) forName.newInstance();
@@ -32,7 +32,7 @@ public class TimeSheetStarter {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		WebDriver driver = null;
 		if (args.length == 1) {
-			String password = EncryptionUtil.decrypt(System.getenv("sysenv.email.password"),args[0].trim());
+			String password = EncryptionUtil.decrypt(System.getenv("timesheet.key").trim(),System.getenv("timesheet.hash").trim());
 			driver = TimeSheetUpdater.setupLogin(password);
 		} else {
 			Console console = System.console();

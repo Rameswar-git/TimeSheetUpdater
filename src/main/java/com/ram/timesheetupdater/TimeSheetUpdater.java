@@ -26,7 +26,7 @@ public interface TimeSheetUpdater {
 	public static WebDriver setupLogin(String password) throws InterruptedException, IOException {
 		FirefoxBinary firefoxBinary = new FirefoxBinary();
 		firefoxBinary.addCommandLineOptions("--headless");
-		System.setProperty("webdriver.gecko.driver", "D:\\Softwares\\Selenium Drivers\\geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", System.getenv("selenium.firefox.driverpath"));
 		FirefoxOptions options = new FirefoxOptions();
 		options.setProfile(new FirefoxProfile());
 		options.setBinary(firefoxBinary);

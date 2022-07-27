@@ -9,12 +9,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>selenium-test</name>
 
-	<repositories>
+<!-- 	<repositories>
 		<repository>
 			<id>my</id>
 			<url>file://D://Softwares//Jars</url>
 		</repository>
-	</repositories>
+	</repositories> -->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,7 +34,8 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<finalName>TimeSheetUpdater</finalName>
-					<outputDirectory>D:\Time Sheet Updater</outputDirectory>
+					<appendAssemblyId>false</appendAssemblyId>
+					<outputDirectory>D:\Developed Jars</outputDirectory>
 					<addClasspath>true</addClasspath>
 					<archive>
 						<manifest>
