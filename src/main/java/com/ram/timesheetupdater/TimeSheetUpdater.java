@@ -49,7 +49,7 @@ public interface TimeSheetUpdater {
 //		List<WebElement> locateElement = null;
 		boolean isContinue = true;
 		for (int i = 0; i <= 15 && isContinue ; i++) {
-			today = today.minusDays(i);
+			today = today.minusDays(1);
 			isContinue = updateForDate(driver,today);
 		}
 	}
