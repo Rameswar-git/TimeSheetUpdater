@@ -47,7 +47,7 @@ public interface TimeSheetUpdater {
 //		WebElement workDescFld = null;
 //		String workDesc = null;
 //		List<WebElement> locateElement = null;
-		boolean isContinue = true;
+		boolean isContinue = updateForDate(driver,today);
 		for (int i = 0; i <= 15 && isContinue ; i++) {
 			today = today.minusDays(1);
 			isContinue = updateForDate(driver,today);
