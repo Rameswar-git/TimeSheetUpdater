@@ -1,19 +1,15 @@
 package com.ram.timesheetupdater;
 
 import java.awt.image.BufferedImage;
-import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-
 import javax.imageio.ImageIO;
-
 import org.openqa.selenium.WebDriver;
 
-import com.rameswar.EncryptionUtils.EncryptionUtil;
 
 public class TimeSheetStarter {
 	private static TimeSheetUpdater timeSheetUpdaterService = null;
@@ -30,24 +26,24 @@ public class TimeSheetStarter {
 	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
-		WebDriver driver = null;
-		if (args.length == 1) {
-			String password = EncryptionUtil.decrypt(System.getenv("timesheet.key").trim(),System.getenv("timesheet.hash").trim());
-			driver = TimeSheetUpdater.setupLogin(password);
-		} else {
-			Console console = System.console();
-			if (console == null) {
-				System.out.println("Couldn't get Console instance");
-				System.exit(0);
-			}
-			console.flush();
-			console.flush();
-			String password = new String(console.readPassword("Enter your password: "));
-			//new Scanner(System.in).nextLine()
-					//new String(console.readPassword("Enter your password: "));
-			driver = TimeSheetUpdater.setupLogin(password);
-			console.flush();
-		}
+//		if (args.length == 1) {
+//			String password = EncryptionUtil.decrypt(System.getenv("timesheet.key").trim(),System.getenv("timesheet.hash").trim());
+//			driver = TimeSheetUpdater.setupLogin(password);
+//		} else {
+//			Console console = System.console();
+//			if (console == null) {
+//				System.out.println("Couldn't get Console instance");
+//				System.exit(0);
+//			}
+//			console.flush();
+//			console.flush();
+//			String password = new String(console.readPassword("Enter your password: "));
+//			//new Scanner(System.in).nextLine()
+//					//new String(console.readPassword("Enter your password: "));
+//			driver = TimeSheetUpdater.setupLogin(password);
+//			console.flush();
+//		}
+		WebDriver driver = TimeSheetUpdater.setupChromeLogin();
 		timeSheetUpdaterService.updateTimeSheet(driver);
 		timeSheetUpdaterService.updateMissingTimeSheets(driver);
 	}

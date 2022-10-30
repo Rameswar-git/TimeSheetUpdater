@@ -1,5 +1,7 @@
 package com.ram.timesheetupdater;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -9,12 +11,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
-
-import java.io.IOException;
 
 public interface TimeSheetUpdater {
 	
@@ -40,7 +42,38 @@ public interface TimeSheetUpdater {
 		TimeUnit.MINUTES.sleep(2);
 		return driver;
 	}
-
+	
+	public static WebDriver setupChromeLogin() throws InterruptedException, IOException {
+		System.setProperty("webdriver.chrome.driver", System.getenv("selenium.chrome.driverpath"));
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments(System.getenv("selenium.chrome.profilepath"));
+		options.addArguments("--disable-notifications");
+//		options.setHeadless(true);
+		WebDriver driver = new ChromeDriver(options);
+		driver.manage().window().maximize();
+		driver.navigate().to("https://myspace.innominds.com/user/login");
+		TimeUnit.SECONDS.sleep(4);
+		driver.findElement(By.xpath("//*[@id=\"submit\"]")).click();
+		TimeUnit.MINUTES.sleep(2);
+		return driver;
+	}
+	
+	public static WebDriver setupFirefoxLogin() throws InterruptedException, IOException {
+		FirefoxBinary firefoxBinary = new FirefoxBinary();
+		firefoxBinary.addCommandLineOptions("--headless");
+		System.setProperty("webdriver.gecko.driver", System.getenv("selenium.firefox.driverpath"));
+		FirefoxOptions options = new FirefoxOptions();
+		options.setProfile(new FirefoxProfile(new File("C:\\Users\\ramas\\AppData\\Roaming\\Mozilla\\Firefox")));
+		options.setBinary(firefoxBinary);
+		options.addPreference("dom.webnotifications.enabled", false);
+		WebDriver driver = new FirefoxDriver(options);
+		driver.navigate().to("https://myspace.innominds.com/user/login");
+		TimeUnit.SECONDS.sleep(4);
+		driver.findElement(By.xpath("//*[@id=\"submit\"]")).click();
+		TimeUnit.MINUTES.sleep(2);
+		return driver;
+	}
+	
 	public default void updateTimeSheet(WebDriver driver) throws InterruptedException {
 		LocalDate today = LocalDate.now();
 //		WebElement workHrlFld = null;
